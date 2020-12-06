@@ -7,6 +7,7 @@
 编程相关：`Linux`、`C++`、`Python`、`TensorFlow`、`Pytorch`、`DGL`、`PyG`、`networkx`、`HDFS`
 
 写作动力：随着图引擎和图算法研究的深入，涉及越来越广，希望在 [Graph-Algorithms](https://github.com/AI-Friend/Graph-Algorithms) 里记录一些总结和思考
+
 *git 显示md文档的公式和图片太费劲了，clone下来或者看pdf更易读*
 
 分类：旨在获取embedding的无监督算法称为 `图表示学习` ;  `GNN`常常是监督学习; 知识图谱相关的称为 `KG-Embedding`（*<span style='color:green;background:white;'>我的分类很主观，基于游走的算法常称为图表示算法，基于邻居汇聚的叫 GNN</span>*）
