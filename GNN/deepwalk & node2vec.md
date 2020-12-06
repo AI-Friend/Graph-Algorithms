@@ -26,7 +26,7 @@ DGI 是以 `互信息` 为基础的无监督算法，考虑局部和全局信息
 # deepwalk
 
 <center>DeepWalk 算法流程（EGES论文[6]）</center>
-![](./media/deepwalk%20pipeline.jpg)
+![](media/deepwalk%20pipeline.jpg)
 
 
 
