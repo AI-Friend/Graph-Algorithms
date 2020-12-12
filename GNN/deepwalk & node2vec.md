@@ -8,7 +8,7 @@
 
 Graph Embedding 算法用低维稠密的向量表示点或边，期望图中的相似 ( `不同的方法对相似的定义不同 `) 顶点在低维空间的表示也接近。旨在训练顶点或边的连续特征表示，用于下游的机器学习任务，如节点分类，链接预测等。[deepwalk](#deepwalk) 和 [node2vec](#node2vec) 是经典的游走类 Graph Embedding 算法，核心步骤是 **截断(随机)游走** 和 **顶点表示** :
 $$
-truncated \ (random/weight/BFS/DFS)\ walk + word2vec(skip\ gram)
+truncated \ random(weight/BFS/DFS)\ walk + word2vec(skip\ gram)
 $$
 **truncated random walk** 就是在 Graph 上随机游走，设定游走长度，采样像句子一样的序列；然后word2vec训练顶点的表示。embedding、word2vec 的内容可参考 [AI-Friend: Deep-Learning](https://github.com/AI-Friend/Deep-Learning) 的相关文章。
 
@@ -30,7 +30,7 @@ DGI 是以 `互信息` 为基础的无监督算法，考虑局部和全局信息
 
 
 
-$deep walk = weighted\ walk + skip\ gram$ ，weighted walk 是一种可重复访问已访问顶点的带权DFS算法。
+$deep walk = random\ walk + skip\ gram$ ，random walk 是一种可重复访问已访问顶点的带权DFS算法。
 
 deep walk 可提取任务无关的特征，经常作为 baseline，尤其适用于信息缺失，标签少，数据量小的情况。
 
@@ -47,6 +47,7 @@ deep walk 可提取任务无关的特征，经常作为 baseline，尤其适用�
 * 分布式训练时（数据并行），机器性能相近优先考虑同步模式，机器性能差异大时，优先考虑异步训练模式。tensorflow分布式训练 deep walk，有时候会出现loss异常大的情况，非chief节点的checkpoint_dir 指定为None 可避免，监督模型的分布式没有这个问题
 * 经典deep walk的顶点是没有属性的，实际使用时，带属性效果会更好，相当于加入了额外信息
 * **random walk** 不适用于社交和商品等网络，因为这类网络的中大部分顶点的关联性很弱，**热点顶点** 的重要性很高（与文本中的热点词相反，文本的热点词并不居于重要地位，比如 “这样”，“哪里”......）。random walk 会采出很多冷门顶点的序列，适合在文本中采序列，而 `weighted walk`（基于边的权重采样）可以尽量往`热门顶点`方向游走，采出来的样本序列置信度更高
+* deepwalk 与 node2vec 偏向于出现频率高的节点类型；偏向于相对集中的几点（即度数高的节点）
 
 
 
